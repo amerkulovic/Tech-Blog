@@ -1,14 +1,15 @@
-{{!-- <div>Tech Blog</div> --}}
+{{! <div>Tech Blog</div> }}
 
 {{#each posts as |post|}}
   <div class="dish col-md-5">
-    <p>
+    <p class="card-header">
       {{post.title}}
     </p>
-  </div>
-  <div class="col-md-7">
-    <p>
+    <p class="card-body">
       {{post.body}}
     </p>
   </div>
+  {{! <div class="col-md-7"> }}
+
+  {{! </div> }}
 {{/each}}

@@ -126,18 +126,14 @@ nav {
 }
 
 .card-header {
-  color: var(--light);
+  color: rgb(196, 196, 240);
   margin: 0;
-  background-color: var(--secondary);
+  background-color: rgb(106, 106, 229);
   padding: 0.625rem;
-  border: 3px solid var(--primary);
+  border: 3px solid rgb(187, 186, 247);
   border-radius: var(--border-radius);
   border-style: solid;
   border-width: medium;
-}
-
-.has-nuts {
-  color: var(--error);
 }
 
 .dish-card-header {
@@ -153,6 +149,7 @@ nav {
   padding: 2.5%;
   font-size: 1.4rem;
   text-align: center;
+  background-color: white;
 }
 
 /* LAYOUT */
