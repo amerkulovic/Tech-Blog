@@ -9,9 +9,13 @@
   <div class="flex-column justify-space-around min-100-vh">
     <header class="flex-column">
         <nav class="display-flex justify-space-between align-center p-2">
-          <a href="Home">Home</a>
-          <a href="Dashboard">Dashboard</a>
-          <a href="Log In">Log In</a>
+          <a href="">Home</a>
+          <a href="">Dashboard</a>
+          {{#if loggedIn}}
+          <button id="logout" class="btn-no-style">Logout</button>
+          {{else}}
+          <a href="/login">Log In</a>
+          {{/if}}
         </nav>
       <h1 class ="p2">
         💻 Tech Blog 💻
@@ -24,6 +28,9 @@
         <p>Made by Amer</p>
       </footer>
   </div>
-  </body>
+   {{#if logged_in}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
+</body>
 
 </html>
