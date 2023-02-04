@@ -2,9 +2,7 @@
   <div class="dish col-md-5">
     <p class="card-header">
       {{post.title}}
-    </p>
-    <p class="card-body">
-      {{post.createdAt}}
+      {{format_date post.createdAt}}
     </p>
   </div>
 {{/each}}
