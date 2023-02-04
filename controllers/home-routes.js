@@ -1,9 +1,10 @@
 const router = require("express").Router();
+const { User } = require("../models");
 const Post = require("../models/Post");
 const withAuth = require("./../utils/auth");
 
 router.get("/", async (req, res) => {
-  const postData = await Post.findAll().catch((err) => {
+  const postData = await Post.findAll({ include: [User] }).catch((err) => {
     res.json(err);
   });
   const posts = postData.map((post) => post.get({ plain: true }));
@@ -17,6 +18,10 @@ router.get("/login", (req, res) => {
   }
 
   res.render("login");
+});
+
+router.get("/dashboard", (req, res) => {
+  res.render("dashboard");
 });
 
 module.exports = router;

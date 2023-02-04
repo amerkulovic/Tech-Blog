@@ -43,7 +43,7 @@ aside {
 
 nav {
   display: flex;
-  background-color: var(--secondary);
+  background-color: wheat;
 }
 
 .menu-container {
