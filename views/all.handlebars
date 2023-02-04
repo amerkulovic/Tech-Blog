@@ -1,7 +1,7 @@
 {{! <div>Tech Blog</div> }}
 
 {{#each posts as |post|}}
-  <div class="dish col-md-5">
+  <div class="dish col-md-5" data-userId={{post.user.id}}>
     <p class="card-header">
       {{post.title}}
       {{post.user.username}}

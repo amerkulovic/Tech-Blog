@@ -8,7 +8,8 @@ router.get("/", async (req, res) => {
     res.json(err);
   });
   const posts = postData.map((post) => post.get({ plain: true }));
-  res.render("all", { posts, loggedIn: req.session.loggedIn });
+  console.log(posts);
+  res.render("all", { posts, userId: req.session.userId, loggedIn: req.session.loggedIn });
 });
 
 router.get("/login", (req, res) => {
@@ -20,8 +21,13 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
-router.get("/dashboard", (req, res) => {
-  res.render("dashboard");
+router.get("/dashboard/:id", async (req, res) => {
+  const postData = await Post.findAll({ where: { user_id: req.params.id } }).catch((err) => {
+    res.json(err);
+  });
+  const posts = postData.map((post) => post.get({ plain: true }));
+  console.log(posts);
+  res.render("dashboard", { posts, loggedIn: req.session.loggedIn });
 });
 
 module.exports = router;
