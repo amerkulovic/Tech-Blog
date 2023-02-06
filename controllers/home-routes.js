@@ -27,20 +27,20 @@ router.get("/login", (req, res) => {
 
 router.get("/logout", (req, res) => {
   req.session.loggedIn = false;
-  // if (!req.session.loggedIn) {
-  //   res.redirect("/login");
-  //   return;
-  // }
 
   res.render("login");
 });
 
 router.get("/dashboard/:id", async (req, res) => {
-  const postData = await Post.findAll({ where: { user_id: req.params.id } }).catch((err) => {
-    res.json(err);
-  });
-  const posts = postData.map((post) => post.get({ plain: true }));
-  res.render("dashboard", { posts, loggedIn: req.session.loggedIn });
+  if (!req.session.loggedIn) {
+    res.redirect("/login");
+  } else {
+    const postData = await Post.findAll({ where: { user_id: req.params.id } }).catch((err) => {
+      res.json(err);
+    });
+    const posts = postData.map((post) => post.get({ plain: true }));
+    res.render("dashboard", { posts, loggedIn: req.session.loggedIn });
+  }
 });
 
 module.exports = router;
