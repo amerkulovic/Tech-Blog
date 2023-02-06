@@ -4,12 +4,16 @@ const Post = require("../models/Post");
 const withAuth = require("./../utils/auth");
 
 router.get("/", async (req, res) => {
-  const postData = await Post.findAll({ include: [User] }).catch((err) => {
-    res.json(err);
-  });
-  const posts = postData.map((post) => post.get({ plain: true }));
-  console.log(posts);
-  res.render("all", { posts, userId: req.session.userId, loggedIn: req.session.loggedIn });
+  if (!req.session.loggedIn) {
+    res.redirect("/login");
+  } else {
+    const postData = await Post.findAll({ include: [User] }).catch((err) => {
+      res.json(err);
+    });
+    const posts = postData.map((post) => post.get({ plain: true }));
+    console.log(posts);
+    res.render("all", { posts, userId: req.session.userId, loggedIn: req.session.loggedIn });
+  }
 });
 
 router.get("/login", (req, res) => {
@@ -17,6 +21,16 @@ router.get("/login", (req, res) => {
     res.redirect("/");
     return;
   }
+
+  res.render("login");
+});
+
+router.get("/logout", (req, res) => {
+  req.session.loggedIn = false;
+  // if (!req.session.loggedIn) {
+  //   res.redirect("/login");
+  //   return;
+  // }
 
   res.render("login");
 });

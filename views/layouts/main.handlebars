@@ -12,7 +12,7 @@
           <a href="/">Home</a>
           <a href="/dashboard/{{userId}}">Dashboard</a>
           {{#if loggedIn}}
-          <button id="logout" class="btn-no-style">Logout</button>
+          <a href="/logout"><button id="logout" class="btn-no-style">Logout</button></a>
           {{else}}
           <a href="/login">Log In</a>
           {{/if}}
