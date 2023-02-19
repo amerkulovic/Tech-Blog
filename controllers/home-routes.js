@@ -11,7 +11,6 @@ router.get("/", async (req, res) => {
       res.json(err);
     });
     const posts = postData.map((post) => post.get({ plain: true }));
-    console.log(posts);
     res.render("all", { posts, userId: req.session.userId, loggedIn: req.session.loggedIn });
   }
 });
@@ -41,6 +40,35 @@ router.get("/dashboard/:id", async (req, res) => {
     const posts = postData.map((post) => post.get({ plain: true }));
     res.render("dashboard", { posts, loggedIn: req.session.loggedIn });
   }
+});
+
+router.post("/dashboard", async (req, res) => {
+  if (!req.session.loggedIn) {
+    res.redirect("/login");
+  } else {
+    try {
+      console.log(req.session.id);
+      const postData = await Post.create({
+        title: req.body.title,
+        body: req.body.body,
+        user_id: req.session.id,
+      });
+      res.status(200).json(postData);
+    } catch (err) {
+      res.status(400).json(err);
+    }
+  }
+});
+
+router.get("/dashboard", async (req, res) => {
+  console.log(req);
+  const postData = await Post.findAll({
+    where: {
+      user_id: req.session.userId,
+    },
+  });
+  const posts = postData.map((post) => post.get({ plain: true }));
+  res.render("dashboard", { posts, loggedIn: req.session.loggedIn });
 });
 
 module.exports = router;

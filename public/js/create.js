@@ -2,10 +2,20 @@ let popUp = () => {
   newPostFormEl.classList.remove("hidden");
 };
 
-let postBtnHandler = () => {
+let postBtnHandler = async () => {
   newPostFormEl.classList.add("hidden");
-  console.log(titleEl.value);
-  console.log(descEl.value);
+  const response = await fetch(`/dashboard/:id`, {
+    method: "POST",
+    body: JSON.stringify({ title: "whatever", body: "whatever" }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (response.ok) {
+    console.log("It worked");
+  } else {
+    alert("It failed");
+  }
 };
 
 let createBtnEl = document.querySelector("#create-btn").addEventListener("click", popUp);
