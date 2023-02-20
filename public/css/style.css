@@ -1,13 +1,3 @@
-:root {
-  --primary: #389393;
-  --secondary: #f5a25d;
-  --tertiary: #fa7f72;
-  --quatrinary: #6c6b67;
-  --light: #ebebeb;
-  --dark: #182c23;
-  --error: rgb(228, 46, 1);
-  --border-radius: 0.3rem;
-}
 
 body {
   font-family: Arial;
