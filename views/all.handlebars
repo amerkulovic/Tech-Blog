@@ -1,13 +1,12 @@
 {{! <div>Tech Blog</div> }}
 
 {{#each posts as |post|}}
-  <div class="dish col-md-5" data-userId={{post.user.id}}>
-    <p class="card-header">
+  <div class="dish col-md-5">
+    <a href="/post/{{post.id}}">
+    <p data-id="{{id}}" class="card-header">
       {{post.title}}
-      {{post.user.username}}
+      {{format_date post.createdAt}}
     </p>
-    <p class="card-body">
-      {{post.body}}
-    </p>
+    </a>
   </div>
 {{/each}}

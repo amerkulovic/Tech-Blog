@@ -82,7 +82,14 @@ router.get("/post", withAuth, async (req, res) => {
 
 router.get("/post/:id", withAuth, async (req, res) => {
   try {
-    const postData = await Post.findByPk(req.params.id, {});
+    const postData = await Post.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ["username"],
+        },
+      ],
+    });
     const post = postData.get({ plain: true });
     res.render("post", {
       ...post,
