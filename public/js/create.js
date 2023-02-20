@@ -2,11 +2,16 @@ let popUp = () => {
   newPostFormEl.classList.remove("hidden");
 };
 
-let postBtnHandler = async () => {
+let postBtnHandler = async (event) => {
+  event.preventDefault();
+
+  const title = document.querySelector("#title").value;
+  const body = document.querySelector("#desc").value;
+
   newPostFormEl.classList.add("hidden");
-  const response = await fetch(`/dashboard/:id`, {
+  const response = await fetch(`/dashboard/`, {
     method: "POST",
-    body: JSON.stringify({ title: "whatever", body: "whatever" }),
+    body: JSON.stringify({ title, body }),
     headers: {
       "Content-Type": "application/json",
     },

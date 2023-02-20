@@ -47,11 +47,10 @@ router.post("/dashboard", async (req, res) => {
     res.redirect("/login");
   } else {
     try {
-      console.log(req.session.id);
       const postData = await Post.create({
         title: req.body.title,
         body: req.body.body,
-        user_id: req.session.id,
+        user_id: req.session.userId,
       });
       res.status(200).json(postData);
     } catch (err) {
@@ -60,7 +59,7 @@ router.post("/dashboard", async (req, res) => {
   }
 });
 
-router.get("/dashboard", async (req, res) => {
+router.get("/dashboard", withAuth, async (req, res) => {
   console.log(req);
   const postData = await Post.findAll({
     where: {
