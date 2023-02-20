@@ -26,5 +26,3 @@ let postBtnHandler = async (event) => {
 let createBtnEl = document.querySelector("#create-btn").addEventListener("click", popUp);
 let postBtnEl = document.querySelector("#post-btn").addEventListener("click", postBtnHandler);
 let newPostFormEl = document.querySelector("#new-post-form");
-let titleEl = document.querySelector("#title");
-let descEl = document.querySelector("#desc");

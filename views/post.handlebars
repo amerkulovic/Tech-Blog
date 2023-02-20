@@ -1,6 +1,22 @@
-<div data-id="{{id}}" class="dish col-md-5">
-  <h1>{{title}}</h1>
-  <p>{{body}}</p>
-  <p>{{user.username}}</p>
-  <p>{{format_date createdAt}}</p>
+<div data-id="{{id}}" class="col-md-12 text-center">
+  <h1 class="card-header">{{title}}</h1>
+  <div class="card-body">
+    <p>{{body}}</p>
+    <p>Posted by: {{user.username}}</p>
+    <p>{{format_date createdAt}}</p>
+  </div>
+  <button id="comment-btn" class="card-header text-center">Leave Comment</button>
+
+  <form id="new-comment-form" class="card-header hidden" action="">
+
+    <h2>Comment</h2>
+    <div>
+      <h4>Description</h4>
+      <textarea id="description" type="description"></textarea>
+    </div>
+    <button>Post</button>
+
+  </form>
 </div>
+
+<script src="/js/post.js"></script>
