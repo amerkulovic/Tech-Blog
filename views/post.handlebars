@@ -17,6 +17,24 @@
     <button id="post-comment-btn">Post</button>
 
   </form>
+  <button id="update-btn" class="card-header text-center">UPDATE</button>
+
+  <form id="update-form" class="card-header hidden" action="">
+
+    <h2>Update</h1>
+  <div>
+    <h4>Title</h4>
+ <input  id="update-title" type="title" />
+  </div>
+  <div>
+    <h4>Description</h4>
+ <input id="update-desc" type="description" />
+  </div>
+  <button id="update-post-btn" data-id="{{id}}">Post</button>
+
+  </form>
+
+  <button id="delete-btn" class="card-header text-center">DELETE</button>
 </div>
 
 <script src="/js/post.js"></script>

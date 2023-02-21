@@ -2,13 +2,17 @@ let revealCommentForm = async () => {
   commentFormEl.classList.remove("hidden");
 };
 
+let revealUpdateForm = () => {
+  updateFormEl.classList.remove("hidden");
+};
+
 const newCommentHandler = async (event) => {
   event.preventDefault();
 
   let description = document.querySelector("#description").value.trim();
 
   if (description) {
-    const response = await fetch(`/dashboard`, {
+    const response = await fetch(`/api/post/${id}`, {
       method: "POST",
       body: JSON.stringify({ description }),
       headers: {
@@ -23,6 +27,35 @@ const newCommentHandler = async (event) => {
     }
   }
 };
+
+const updateFormHandler = async (event) => {
+  event.preventDefault();
+
+  const title = document.querySelector("#update-title").value.trim();
+  const body = document.querySelector("#update-desc").value.trim();
+
+  if (title && body) {
+    const id = event.target.getAttribute("data-id");
+    console.log(id);
+    const response = await fetch(`/api/post/${id}`, {
+      method: "PUT",
+      body: JSON.stringify({ title, body }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (response.ok) {
+      document.location.reload();
+    } else {
+      alert("Failed to update post");
+    }
+  }
+};
+
+let updateBtnEl = document.querySelector("#update-btn").addEventListener("click", revealUpdateForm);
+let updateFormEl = document.querySelector("#update-form");
+let updateBtnPostEl = document.querySelector("#update-post-btn").addEventListener("click", updateFormHandler);
 let commentFormEl = document.querySelector("#new-comment-form");
 let commentBtnEl = document.querySelector("#comment-btn").addEventListener("click", revealCommentForm);
 let postCommentEl = document.querySelector("#post-comment-btn").addEventListener("click", newCommentHandler);
