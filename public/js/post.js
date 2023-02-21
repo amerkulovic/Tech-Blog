@@ -1,4 +1,4 @@
-let postCommentHandler = async () => {
+let revealCommentForm = async () => {
   commentFormEl.classList.remove("hidden");
 };
 
@@ -19,9 +19,10 @@ const newCommentHandler = async (event) => {
     if (response.ok) {
       document.location.replace(`/dashboard`);
     } else {
-      alert("Failed to create job");
+      alert("Failed to create comment");
     }
   }
 };
 let commentFormEl = document.querySelector("#new-comment-form");
-let commentBtnEl = document.querySelector("#comment-btn").addEventListener("click", postCommentHandler);
+let commentBtnEl = document.querySelector("#comment-btn").addEventListener("click", revealCommentForm);
+let postCommentEl = document.querySelector("#post-comment-btn").addEventListener("click", newCommentHandler);

@@ -30,16 +30,15 @@ router.get("/logout", (req, res) => {
   res.render("login");
 });
 
-router.get("/dashboard/:id", async (req, res) => {
-  if (!req.session.loggedIn) {
-    res.redirect("/login");
-  } else {
-    const postData = await Post.findAll({ where: { user_id: req.params.id } }).catch((err) => {
-      res.json(err);
-    });
-    const posts = postData.map((post) => post.get({ plain: true }));
-    res.render("dashboard", { posts, loggedIn: req.session.loggedIn });
-  }
+router.get("/dashboard", withAuth, async (req, res) => {
+  console.log(req);
+  const postData = await Post.findAll({
+    where: {
+      user_id: req.session.userId,
+    },
+  });
+  const posts = postData.map((post) => post.get({ plain: true }));
+  res.render("dashboard", { posts, loggedIn: req.session.loggedIn });
 });
 
 router.post("/dashboard", async (req, res) => {
@@ -59,18 +58,19 @@ router.post("/dashboard", async (req, res) => {
   }
 });
 
-router.get("/dashboard", withAuth, async (req, res) => {
-  console.log(req);
-  const postData = await Post.findAll({
-    where: {
-      user_id: req.session.userId,
-    },
-  });
-  const posts = postData.map((post) => post.get({ plain: true }));
-  res.render("dashboard", { posts, loggedIn: req.session.loggedIn });
+router.get("/dashboard/:id", async (req, res) => {
+  if (!req.session.loggedIn) {
+    res.redirect("/login");
+  } else {
+    const postData = await Post.findAll({ where: { user_id: req.params.id } }).catch((err) => {
+      res.json(err);
+    });
+    const posts = postData.map((post) => post.get({ plain: true }));
+    res.render("dashboard", { posts, loggedIn: req.session.loggedIn });
+  }
 });
 
-router.get("/post", withAuth, async (req, res) => {
+router.get("/posts", withAuth, async (req, res) => {
   const postData = await Post.findAll({
     where: {
       user_id: req.session.userId,
@@ -99,5 +99,35 @@ router.get("/post/:id", withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+// router.put("post/:id", async (req, res) => {
+//   try {
+//     const newPost = await Post.update(req.body, {
+//       where: { user_id: req.params.id },
+//     });
+//     res.status(200).json(newPost);
+//   } catch (err) {
+//     res.status(400).json(err);
+//   }
+// });
+
+// router.delete("post/:id", async (req, res) => {
+//   try {
+//     const postData = await Post.destroy({
+//       where: {
+//         user_id: req.params.id,
+//       },
+//     });
+
+//     if (!postData) {
+//       res.status(404).json({ message: "No post found with this id!" });
+//       return;
+//     }
+
+//     res.status(200).json(postData);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 module.exports = router;
