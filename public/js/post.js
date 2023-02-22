@@ -10,8 +10,10 @@ const newCommentHandler = async (event) => {
   event.preventDefault();
 
   let description = document.querySelector("#description").value.trim();
+  console.log(description);
 
   if (description) {
+    const id = event.target.getAttribute("data-id");
     const response = await fetch(`/api/post/${id}`, {
       method: "POST",
       body: JSON.stringify({ description }),
