@@ -35,6 +35,15 @@
   </form>
 
   <button id="delete-btn" class="card-header text-center" data-id="{{id}}">DELETE</button>
+
+  {{#each comments as |comment|}}
+  <div class="dish col-md-5">
+    <p data-id="{{id}}" class="card-header">
+      {{comment.description}}
+      {{format_date comment.createdAt}}
+    </p>
+  </div>
+{{/each}}
 </div>
 
 <script src="/js/post.js"></script>
