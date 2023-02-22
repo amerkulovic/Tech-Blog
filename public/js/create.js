@@ -17,7 +17,7 @@ let postBtnHandler = async (event) => {
     },
   });
   if (response.ok) {
-    console.log("It worked");
+    document.location.reload();
   } else {
     alert("It failed");
   }
