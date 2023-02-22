@@ -53,6 +53,23 @@ const updateFormHandler = async (event) => {
   }
 };
 
+const delPostHandler = async (event) => {
+  if (event.target.hasAttribute("data-id")) {
+    const id = event.target.getAttribute("data-id");
+
+    const response = await fetch(`/api/post/${id}`, {
+      method: "DELETE",
+    });
+
+    if (response.ok) {
+      document.location.replace("/dashboard");
+    } else {
+      alert("Failed to delete job");
+    }
+  }
+};
+
+let deleteBtnEl = document.querySelector("#delete-btn").addEventListener("click", delPostHandler);
 let updateBtnEl = document.querySelector("#update-btn").addEventListener("click", revealUpdateForm);
 let updateFormEl = document.querySelector("#update-form");
 let updateBtnPostEl = document.querySelector("#update-post-btn").addEventListener("click", updateFormHandler);
