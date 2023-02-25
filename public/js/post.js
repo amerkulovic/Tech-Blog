@@ -1,9 +1,11 @@
 let revealCommentForm = async () => {
   commentFormEl.classList.remove("hidden");
+  updateFormEl.classList.add("hidden");
 };
 
 let revealUpdateForm = () => {
   updateFormEl.classList.remove("hidden");
+  commentFormEl.classList.add("hidden");
 };
 
 const newCommentHandler = async (event) => {

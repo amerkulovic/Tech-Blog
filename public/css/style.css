@@ -17,7 +17,7 @@ header {
 }
 
 main {
-  display: flex;
+  margin-top: 15px;
   flex-wrap: wrap;
   flex-grow: 1;
 }
@@ -155,4 +155,24 @@ button {
 
 .hidden {
   display: none;
+}
+
+.div-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+}
+
+.new-post-div {
+  position: absolute;
+  bottom: 5%;
+  left: 45%;
+}
+#new-post-form {
+  width: 50%;
+  display: block;
+  margin: auto;
+  text-align: center;
+  margin-top: 15px;
 }

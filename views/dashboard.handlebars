@@ -1,5 +1,5 @@
 {{#each posts as |post|}}
-  <div class="dish col-md-5">
+  <div class="mx-5 my-2">
     <a href="/post/{{post.id}}">
     <p data-id="{{id}}" class="card-header">
       {{post.title}}
@@ -23,8 +23,11 @@
   <button id="post-btn">Post</button>
 
  </form>
-<footer>
-  <button id="create-btn" class="card-header text-center">Create a new post</button>
-</footer>
+
+<div class="new-post-div">
+ <button id="create-btn" class="card-header text-center">Create a new post</button>
+</div>
+ 
+
 
 <script src="/js/create.js"></script>

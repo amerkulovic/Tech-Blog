@@ -34,7 +34,7 @@ router.get("/dashboard", withAuth, async (req, res) => {
   console.log(req);
   const postData = await Post.findAll({
     where: {
-       user_id: req.session.userId,
+      user_id: req.session.userId,
     },
   });
   const posts = postData.map((post) => post.get({ plain: true }));
@@ -90,7 +90,7 @@ router.get("/post/:id", withAuth, async (req, res) => {
         },
         {
           model: Comment,
-          include : [User]
+          include: [User],
         },
       ],
     });
@@ -98,7 +98,7 @@ router.get("/post/:id", withAuth, async (req, res) => {
 
     res.render("post", {
       ...post,
-      logged_in: req.session.logged_in,
+      loggedIn: req.session.loggedIn,
     });
   } catch (err) {
     res.status(500).json(err);
