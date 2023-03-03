@@ -19,4 +19,4 @@ A blog were you can post your favorite thoughts and ideas in a blog forum!
 
 ## Link
 
-[Tech Blog](https://amerkulovic.github.io/Tech-Blog/)
+[Tech Blog](https://tech-blog-ak01.herokuapp.com/)

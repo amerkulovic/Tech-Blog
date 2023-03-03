@@ -3,6 +3,7 @@ let popUp = () => {
 };
 
 let postBtnHandler = async (event) => {
+  newPostFormEl.classList.add("hidden");
   event.preventDefault();
 
   const title = document.querySelector("#title").value;
